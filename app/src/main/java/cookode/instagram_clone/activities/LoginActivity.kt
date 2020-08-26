@@ -1,11 +1,10 @@
 package cookode.instagram_clone.activities
 
+import android.app.ProgressDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
-import android.view.View
-import android.widget.ProgressBar
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import cookode.instagram_clone.MainActivity
@@ -14,10 +13,7 @@ import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
 
-    val mAuth : FirebaseAuth = FirebaseAuth.getInstance()
-    val email : String = edt_email_login.text.toString()
-    val password : String = edt_password_login.text.toString()
-    val progressBar = ProgressBar(this@LoginActivity)
+    private val mAuth : FirebaseAuth = FirebaseAuth.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,21 +29,27 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun loginUser() {
+        val email : String = edt_email_login.text.toString()
+        val password : String = edt_password_login.text.toString()
         when {
             TextUtils.isEmpty(email) ->
                 Toast.makeText(this, "Email tidak boleh kosong", Toast.LENGTH_LONG).show()
             TextUtils.isEmpty(password) ->
                 Toast.makeText(this, "Password tidak boleh kosong", Toast.LENGTH_LONG).show()
             else -> {
-                progressBar.visibility = View.VISIBLE
+                val progressDialog = ProgressDialog(this@LoginActivity)
+                progressDialog.setTitle("Login")
+                progressDialog.setMessage("Please Wait....")
+                progressDialog.setCanceledOnTouchOutside(false)
+                progressDialog.show()
                 mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener {task ->
                     if (task.isSuccessful) {
-                        progressBar.visibility = View.GONE
+                        progressDialog.dismiss()
                         startActivity(Intent(this, MainActivity::class.java)
                             .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK))
                         finish()
                     } else {
-                        progressBar.visibility = View.GONE
+                        progressDialog.dismiss()
                         mAuth.signOut()
                         Toast.makeText(this, "Email atau Password salah", Toast.LENGTH_LONG).show()
                     }
