@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
-import cookode.instagram_clone.MainActivity
 import cookode.instagram_clone.R
 import kotlinx.android.synthetic.main.activity_login.*
 

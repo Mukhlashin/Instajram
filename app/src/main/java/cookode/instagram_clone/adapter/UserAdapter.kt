@@ -36,15 +36,15 @@ class UserAdapter (private var mContext : Context, private val mUser : List<User
 
     override fun onBindViewHolder(holder: UserAdapter.UserViewHolder, position: Int) {
         val user = mUser[position]
-        holder.userName.text = user.getUserName()
-        holder.fullName.text = user.getFullName()
-        Picasso.get().load(user.getImage()).placeholder(R.drawable.profile).into(holder.image)
+        holder.userName.text = user.username
+        holder.fullName.text = user.fullname
+        Picasso.get().load(user.image).placeholder(R.drawable.profile).into(holder.image)
 
-        cekFollowingStatus(user.getUid(), holder.btnFollow)
+        cekFollowingStatus(user.uid, holder.btnFollow)
 
         holder.itemView.setOnClickListener {
             val pref = mContext.getSharedPreferences("Prefs", Context.MODE_PRIVATE).edit()
-            pref.putString("profileId", user.getUid())
+            pref.putString("profileId", user.uid)
             pref.apply()
 
             (mContext as FragmentActivity).supportFragmentManager.beginTransaction()
@@ -57,12 +57,12 @@ class UserAdapter (private var mContext : Context, private val mUser : List<User
                     it1 ->
                     FirebaseDatabase.getInstance().reference
                         .child("Follow").child(it1.toString())
-                        .child("Following").child(user.getUid())
+                        .child("Following").child(user.uid)
                         .setValue(true).addOnCompleteListener { task ->
                             if (task.isSuccessful) {
                                 firebaseUser?.uid.let { it1 ->
                                     FirebaseDatabase.getInstance().reference
-                                        .child("Follow").child(user.getUid())
+                                        .child("Follow").child(user.uid)
                                         .child("Followers").child(it1.toString())
                                         .setValue(true).addOnCompleteListener { task ->
                                             if (task.isSuccessful) {
@@ -77,12 +77,12 @@ class UserAdapter (private var mContext : Context, private val mUser : List<User
                 firebaseUser?.uid.let { it1 ->
                     FirebaseDatabase.getInstance().reference
                         .child("Follow").child(it1.toString())
-                        .child("Following").child(user.getUid())
+                        .child("Following").child(user.uid)
                         .removeValue().addOnCompleteListener { task ->
                             if (task.isSuccessful) {
                                 firebaseUser?.uid.let {it1 ->
                                     FirebaseDatabase.getInstance().reference
-                                        .child("Follow").child(user.getUid())
+                                        .child("Follow").child(user.uid)
                                         .child("Follower").child(it1.toString())
                                         .removeValue().addOnCompleteListener { task ->
                                             if (task.isSuccessful) {
