@@ -29,7 +29,7 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
-    fun createAccount() {
+    private fun createAccount() {
         var fullName : String = edt_fullname_register.text.toString()
         var userName : String = edt_username_register.text.toString()
         var email : String = edt_email_register.text.toString()
@@ -57,7 +57,7 @@ class RegisterActivity : AppCompatActivity() {
                 } else {
                     progressDialog.dismiss()
                     mAuth.signOut()
-                    Toast.makeText(this, "Email atau Password salah", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, "Register failed", Toast.LENGTH_LONG).show()
                 }
             }
         }
