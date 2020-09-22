@@ -1,4 +1,4 @@
-package cookode.instagram_clone.model
+package cmd.ushiramaru.instajram.model
 
 data class Post (
     var postId : String? = null,

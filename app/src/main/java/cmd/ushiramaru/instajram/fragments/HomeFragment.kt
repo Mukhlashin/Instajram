@@ -1,4 +1,4 @@
-package cookode.instagram_clone.fragments
+package cmd.ushiramaru.instajram.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -11,11 +11,9 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-
-import cookode.instagram_clone.R
-import cookode.instagram_clone.adapter.PostAdapter
-import cookode.instagram_clone.model.Post
-import kotlinx.android.synthetic.main.fragment_home.*
+import cmd.ushiramaru.instajram.R
+import cmd.ushiramaru.instajram.adapter.PostAdapter
+import cmd.ushiramaru.instajram.model.Post
 import kotlinx.android.synthetic.main.fragment_home.view.*
 
 /**
@@ -32,13 +30,18 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_home, container, false)
-        checkFollowing()
 
         val linearLayoutManager = LinearLayoutManager(context)
         view.home_recyclerView?.setHasFixedSize(true)
         view.home_recyclerView?.layoutManager = LinearLayoutManager(context)
         linearLayoutManager.reverseLayout = true
         linearLayoutManager.stackFromEnd = true
+
+        postList = ArrayList()
+        postAdapter = context?.let {PostAdapter(it, postList as ArrayList<Post>)}
+        view.home_recyclerView.adapter = postAdapter
+
+        checkFollowing()
         return view
     }
 
@@ -54,7 +57,7 @@ class HomeFragment : Fragment() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 postList?.clear()
                 if (snapshot.exists()){
-                    (followingList as ArrayList<String>).clear()
+                    (followingList as ArrayList<*>).clear()
                     for (i in snapshot.children) {
                         i.key.let {
                             (followingList as ArrayList<String>).add(it!!)
@@ -76,7 +79,7 @@ class HomeFragment : Fragment() {
                 for (snapshot in p0.children){
                     val  post = snapshot.getValue(Post::class.java)
 
-                    for (id in (followingList as ArrayList<String>)) {
+                    for (id in (followingList as ArrayList<*>)) {
                         if (post!!.publisher == id){
                             postList!!.add(post)
                         }

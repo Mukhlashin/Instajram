@@ -1,4 +1,4 @@
-package cookode.instagram_clone.activities
+package cmd.ushiramaru.instajram.activities
 
 import android.app.Activity
 import android.content.Intent
@@ -17,7 +17,7 @@ import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.StorageTask
 import com.google.firebase.storage.UploadTask
 import com.theartofdev.edmodo.cropper.CropImage
-import cookode.instagram_clone.R
+import cmd.ushiramaru.instajram.R
 import kotlinx.android.synthetic.main.activity_add_post.*
 import kotlinx.android.synthetic.main.activity_setting_account.*
 
@@ -60,7 +60,7 @@ class AddPostActivity : AppCompatActivity() {
                     storageProfilePictureRef?.child(System.currentTimeMillis().toString() + ".jpg")
                 val uploadTask: StorageTask<*>
                 val ref = FirebaseDatabase.getInstance().reference.child("Posts")
-                var postId = ref.push().key
+                val postId = ref.push().key
                 uploadTask = fileRef!!.putFile(imageUri!!)
                 uploadTask.continueWithTask(Continuation<UploadTask.TaskSnapshot, Task<Uri>> { task ->
                     if (!task.isSuccessful) {

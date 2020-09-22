@@ -1,4 +1,4 @@
-package cookode.instagram_clone
+package cmd.ushiramaru.instajram
 
 import org.junit.Test
 

@@ -1,15 +1,15 @@
-package cookode.instagram_clone.activities
+package cmd.ushiramaru.instajram.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import cookode.instagram_clone.R
-import cookode.instagram_clone.fragments.HomeFragment
-import cookode.instagram_clone.fragments.NotificationFragment
-import cookode.instagram_clone.fragments.ProfileFragment
-import cookode.instagram_clone.fragments.SearchFragment
+import cmd.ushiramaru.instajram.R
+import cmd.ushiramaru.instajram.fragments.HomeFragment
+import cmd.ushiramaru.instajram.fragments.NotificationFragment
+import cmd.ushiramaru.instajram.fragments.ProfileFragment
+import cmd.ushiramaru.instajram.fragments.SearchFragment
 
 class MainActivity : AppCompatActivity() {
 

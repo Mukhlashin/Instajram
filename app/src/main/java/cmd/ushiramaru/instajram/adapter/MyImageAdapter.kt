@@ -1,4 +1,4 @@
-package cookode.instagram_clone.adapter
+package cmd.ushiramaru.instajram.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
-import cookode.instagram_clone.R
-import cookode.instagram_clone.model.Post
+import cmd.ushiramaru.instajram.R
+import cmd.ushiramaru.instajram.model.Post
 
 class MyImageAdapter(private val mContext: Context, mPost: List<Post>)
     : RecyclerView.Adapter<MyImageAdapter.ViewHolder?>(){

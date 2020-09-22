@@ -1,4 +1,4 @@
-package cookode.instagram_clone
+package cmd.ushiramaru.instajram
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -19,6 +19,6 @@ class ushiramaruInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("cookode.instagram_clone", appContext.packageName)
+        assertEquals("cmd.ushiramaru.instajram", appContext.packageName)
     }
 }

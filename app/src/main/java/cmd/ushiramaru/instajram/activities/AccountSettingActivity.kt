@@ -1,4 +1,4 @@
-package cookode.instagram_clone.activities
+package cmd.ushiramaru.instajram.activities
 
 import android.app.Activity
 import android.app.ProgressDialog
@@ -23,8 +23,8 @@ import com.google.firebase.storage.StorageTask
 import com.google.firebase.storage.UploadTask
 import com.squareup.picasso.Picasso
 import com.theartofdev.edmodo.cropper.CropImage
-import cookode.instagram_clone.R
-import cookode.instagram_clone.model.User
+import cmd.ushiramaru.instajram.R
+import cmd.ushiramaru.instajram.model.User
 import kotlinx.android.synthetic.main.activity_setting_account.*
 import java.util.*
 import kotlin.collections.HashMap
@@ -130,7 +130,7 @@ class AccountSettingActivity : AppCompatActivity() {
                     }
                 }
                 return@Continuation fileRef.downloadUrl
-            }).addOnCompleteListener ( OnCompleteListener<Uri> { task ->
+            }).addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     val downloadUrl = task.result
                     myUrl = downloadUrl.toString()
@@ -147,7 +147,7 @@ class AccountSettingActivity : AppCompatActivity() {
                 }else{
                     progressDialog.dismiss()
                 }
-            })
+            }
         }else if(imageUri == null){
             Toast.makeText(this, "Foto harus diubah", Toast.LENGTH_SHORT).show()
             progressDialog.dismiss()

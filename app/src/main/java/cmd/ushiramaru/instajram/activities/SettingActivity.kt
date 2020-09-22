@@ -1,8 +1,8 @@
-package cookode.instagram_clone.activities
+package cmd.ushiramaru.instajram.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import cookode.instagram_clone.R
+import cmd.ushiramaru.instajram.R
 
 class SettingActivity : AppCompatActivity() {
 

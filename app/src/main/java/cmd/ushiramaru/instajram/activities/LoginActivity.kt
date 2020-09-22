@@ -1,4 +1,4 @@
-package cookode.instagram_clone.activities
+package cmd.ushiramaru.instajram.activities
 
 import android.app.ProgressDialog
 import android.content.Intent
@@ -7,7 +7,7 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
-import cookode.instagram_clone.R
+import cmd.ushiramaru.instajram.R
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
